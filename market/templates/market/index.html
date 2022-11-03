@@ -1,0 +1,75 @@
+{% extends 'market/base.html' %}
+{% load static %}
+{% block mainContent %}
+
+
+
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                   <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Albion Market</h6>
+                        </div>
+                        <div class="card-header">
+                            <!-- Search panel -->
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Посилання</th>
+                                            <th>Опис</th>
+                                            <th>Категорія</th>
+                                            <th>Підтвердження</th>
+                                            <th>Дата</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Посилання</th>
+                                            <th>Опис</th>
+                                            <th>Категорія</th>
+                                            <th>Підтвердження</th>
+                                            <th>Дата</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    {# Перебор ЛИНКОВ #}
+                                    {% for link in links %}
+                                        <tr class='clickable-row' data-href='#' data-value="1" id="{{ link.id }}">
+                                            <td>{{ link.id }}</td>
+                                            <td>{{ link.link }}</td>
+                                            <td>{{ link.description }}</td>
+                                            <td>
+                                                <select class="form-select" aria-label="Default select example" id='category_{{ link.id }}'>
+                                                    <option selected value='0'>Категорія</option>
+                                                    <option value="{{ restrained_information }}">Стриманий інформаційний</option>
+                                                    <option value="aggressive_information">Агресивний інформаційний</option>
+                                                    <option value="restrained_military">Стриманий військовий</option>
+                                                    <option value="aggressive_military">Агресивний військовий</option>
+                                                    <option value="unrecognized_republics">Невизнані республіки</option>
+                                                    <option value="coordination_of_attacks">Координація атаким ВС РФ</option>
+                                                    <option value="cyber_attack_coordination">Координація кібератак</option>
+                                                </select>
+                                            </td>
+                                            <td></td>
+                                            <td>{{ link.created_at }}</td>
+                                        </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+{% endblock %}
+
+{% block pageLevelPlugins %}
+{% endblock %}
